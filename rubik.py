@@ -96,7 +96,6 @@ class Cube:
                     self.faces['B'][0],
                     [row[0] for row in self.faces['L']]
                 ]
-                self.affected = ['F', 'R', 'B', 'L']
             case _:
                 raise ValueError(f"{face} is not a face")
         print(f"affected: {self.affected}")
