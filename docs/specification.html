@@ -1,0 +1,313 @@
+<h1>Rubik's Cube</h1>
+
+<p>A Rubik's Cube is a 3-dimensional puzzle invented in 1974 by Ernő Rubik. The
+cube comprises 26 miniature cubes (also known as "cubies" or "cubelets") where
+the visible face(s) of each miniature cube is a different color and each face
+of the cube may be rotated independently of the others. When solved, each face
+of the cube must have only a single color.</p>
+
+<h2>Problem Description</h2>
+
+<p>A Rubik's cube is a 3-dimensional puzzle. Each face is subdivided into 9
+colored squares as shown in the following illustration:</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Rubik%27s_cube.svg" alt="Rubik's Cube" title="" /></p>
+
+<p>When solved, each face of the cube has a single color (e.g., the top is
+completely white, the front is completely red, the right is completely blue,
+etc.).</p>
+
+<h3>Requirements</h3>
+
+<p>David Singmaster developed a notation for moves when solving a Rubik's Cube. In
+this notation,</p>
+
+<ul>
+<li>the face is indicated using a single character (<code>F</code>, <code>B</code>, <code>U</code>, <code>D</code>, <code>L</code>, and
+<code>R</code> for front, back, up, down, left, and right respectively) and</li>
+<li>a prime symbol indicates a counterclockwise rotation (instead of a clockwise
+rotation).</li>
+</ul>
+
+<p>For example, <code>F'</code> indicates a counterclockwise rotation of the front face of
+the cube, and <code>U</code> indicates a clockwise rotation of the up (top) face of the
+cube.</p>
+
+<p>The starting configuration of the cube may be represented using 54 characters:</p>
+
+<ul>
+<li>Each character indicates a different color: <code>W</code> for white, <code>G</code> for green, <code>R</code>
+for red, <code>B</code> for blue, <code>O</code> for orange, and <code>Y</code> for yellow.</li>
+<li>Each face is enumerated in row-major order. For example, <code>WGGRRBOYO</code>
+represents the following face:
+~~~ text
+WGG
+RRB
+OYO
+~~~</li>
+<li>The faces appear in the following order: up, left, front, right, back, down.</li>
+<li>Spaces may be included for readability (e.g., each face may be separated by a
+space character); these spaces are ignored.</li>
+</ul>
+
+<p>For example,</p>
+
+<pre><code style="font-size: 18">
+GWBYWRYOR YRBOOOOYO RGWWGGWBR GGOWRWYRW WROBBBBYB GYGOYBYGR<br>
+</code></pre>
+<br>
+
+depicts the following cube:</p>
+
+<br><pre><code style="font-size: 18">
+&nbsp;&nbsp;&nbsp;&nbsp;     G W B
+&nbsp;&nbsp;&nbsp;&nbsp;     Y W R
+&nbsp;&nbsp;&nbsp;&nbsp;     Y O R<br>
+
+Y R B &nbsp;&nbsp; R G W &nbsp;&nbsp; G G O &nbsp;&nbsp; W R O
+O O O &nbsp;&nbsp; W G G &nbsp;&nbsp; W R W &nbsp;&nbsp; B B B
+O Y O &nbsp;&nbsp; W B R &nbsp;&nbsp; Y R W &nbsp;&nbsp; B Y B<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;     G Y G
+&nbsp;&nbsp;&nbsp;&nbsp;     O Y B
+&nbsp;&nbsp;&nbsp;&nbsp;     Y G R<br>
+</code></pre>
+
+
+
+<p>where the cube has been "flattened" with the front face at the intersection of
+the cross.</p>
+
+<p>The starting configuration of a Rubik's Cube and a sequence of moves may be
+stored in a file. Blank lines may be included for readability; any blank lines
+should be ignored. After reading the file, the final configuration of the cube
+is printed to the screen. For example, a file with the contents shown below:
+
+<pre><code style="font-size: 18">
+WWWWWWWWW GGGGGGGGG RRRRRRRRR BBBBBBBBB OOOOOOOOO YYYYYYYYY<br>
+
+U
+F'
+R
+</code></pre>
+
+results in the following configuration of the Rubik's Cube:<br>
+
+<pre><code style="font-size: 18">
+&nbsp;&nbsp;&nbsp;&nbsp;     W W R
+&nbsp;&nbsp;&nbsp;&nbsp;     W W R
+&nbsp;&nbsp;&nbsp;&nbsp;     O B R<br>
+
+R R W &nbsp;&nbsp; B R G &nbsp;&nbsp; Y Y Y &nbsp;&nbsp; B G G
+G G W &nbsp;&nbsp; B R Y &nbsp;&nbsp; B B O &nbsp;&nbsp; W O O
+G G W &nbsp;&nbsp; B R Y &nbsp;&nbsp; B B O &nbsp;&nbsp; W O O<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;     R G O
+&nbsp;&nbsp;&nbsp;&nbsp;     Y Y O
+&nbsp;&nbsp;&nbsp;&nbsp;     Y Y G<br>
+</code></pre>
+
+
+<h4>Functional</h4>
+
+<ul>
+<li>The program <strong>MUST</strong> read the specification of a Rubik's Cube and a sequence
+of moves from a specified file.</li>
+<li>Running the program <strong>MUST</strong> print the final configuration of the Rubik's
+Cube.</li>
+<li>The program <strong>SHOULD</strong> report an error if an invalid starting configuration
+of the Rubik's Cube is specified (e.g., a cube with 10 white squares or a
+cube with 2 faces that both have red in the center).</li>
+<li>The program <strong>MAY</strong> shuffle a Rubik's Cube by making a series of random
+moves.</li>
+</ul>
+
+<h4>Non-functional</h4>
+
+<ul>
+<li>The program <strong>MUST</strong> be written in Python.[^1]</li>
+<li>The program <strong>MUST</strong> adhere to <a href="https://peps.python.org/pep-0008/">PEP 8, the style guide for Python
+code</a>.</li>
+<li>The program <strong>MUST</strong> use 1-based indexing to reference cubelets. For example,
+<code>('F', 1, 1)</code> refers to the top-left cell of the front face and <code>('L', 3, 3)</code>
+to the bottom-right cell of the left face.[^2]</li>
+<li>The program <strong>MUST NOT</strong> execute any code (except from initializing global
+variables) when loaded. That is, the program <strong>MUST</strong> have a well-defined
+entry point that is executed only when the program is invoked by a user.</li>
+</ul>
+
+<p>[^1]: This non-functional requirement is technically a <em>constraint</em>: it
+      restricts the design of the system, in this case to facilitate automated
+      testing of the prescribed design and implementation of the system.</p>
+
+<p>[^2]: This non-functional requirement is essential for automated testing. In
+      practice, it should be a recommendation rather than an absolute
+      requirement (i.e., <strong>MUST</strong> would be replaced with <strong>SHOULD</strong>) and the
+      test cases revised to match the implementation.</p>
+
+<h2>Design</h2>
+
+<p>A Rubik's Cube may be represented in any number of ways.[^3] A
+multi-dimensional (6x3x3) array is one way to model the cube where each face of
+the cube is a 3x3 matrix of characters indicating the color at that position of
+the cube.</p>
+
+<p>[^3]: Howard A. Peelle, "Representing a Rubik's Cube in APL,"
+      <em>SIGAPL APL Quote Quad</em>, Vol. 14, No. 4, pp. 255-262, ACM, June 1984.
+      https://doi.org/10.1145/384283.801107</p>
+
+<p>Most implementations are greatly simplified if a copy of the cube's
+current state is made before a move and that copy used to map the original
+position of each cubelet to its subsequent position.</p>
+
+<p>A class diagram for the program appears below:</p>
+
+<p><img src="class-diagram.svg" alt="UML class diagram for a Rubik's Cube" title="" /></p>
+
+<p>The following sequence diagram illustrates the entry point for the Python
+module -- i.e., <code>main</code> is invoked when a user runs the module (but not when the
+module is loaded):</p>
+
+<p><img src="sequence-diagram.svg" alt="UML sequence diagram for the Rubik's Cube program" title="" /></p>
+
+<h3>Alternatives</h3>
+
+<p>As previously mentioned, many alternatives exist for the implementation of a
+Rubik's Cube. For example, a 54-element vector that corresponds to the
+aforementioned starting configuration of a Rubik's Cube may be used instead of
+a multi-dimensional array; this presentation  is simple and efficient but does
+not lend itself to any insight into the structure of a Rubik's Cube. <em>As the
+representation of the Rubik's Cube is a design decision instead of a
+requirement, any representation may be used as long as the interface matches
+those specified by the design.</em></p>
+
+<p>The increase in execution time and space utilization from creating a copy of
+the cube can be avoided by moving the cubelets "in place." In practice, the
+increased implementation complexity almost certainly negates these benefits, at
+least for an initial implementation.</p>
+
+<h2>Implementation</h2>
+
+<p>Python allows negative indices to access elements of a sequence (e.g., a list).
+A negative index is interpreted relative to the end of the sequence. For
+example,</p>
+
+<p>~~~ python
+x = [1, 2, 3]
+last<em>element</em>of_list = x[-1]
+~~~</p>
+
+<p>stores "3" in the variable <code>last_element_of_list</code>. Take care to check the row
+and column index when referencing cubelets. An <code>IndexError</code> must be raised when
+an index is invalid:</p>
+
+<p>~~~ python
+raise IndexError
+~~~</p>
+
+<p>which is similar to "throwing" an exception in other programming languages.
+Similarly, a <code>ValueError</code> must be raised when the face is invalid.</p>
+
+<p>Python lacks strong encapsulation insofar as there are no restrictions on
+accessing "private" member variables. By convention, prefixing an instance
+variable with an underscore (<code>_</code>) indicates that the variable is <strong>not</strong> part
+of the class's public API.[^4]</p>
+
+<p>When an operation is invoked on a Python object, Python passes a reference to
+the object as the first argument of the method. By convention, this parameter
+is named <code>self</code>. The implementation of each method must include this parameter
+-- e.g.,</p>
+
+<p>~~~ python
+  def <strong>str</strong>(self):
+    ...
+~~~</p>
+
+<p>The <code>self</code> parameter allows accessing the object's instance variables and is
+intentionally omitted from the prior class diagram to keep the class diagram
+independent of the programming language.</p>
+
+<p>Python uses a special method, <code>__init__</code>, to instantiate an object. This method
+is comparable to constructors in other object-oriented programming languages.
+For example, the following Python code creates a <code>Cube</code> object:</p>
+
+<p>~~~ python
+cube = Cube()
+~~~</p>
+
+<p>Like other methods, the first parameter of <code>__init__</code> should be <code>self</code>. To
+allow the starting configuration of the cube to be specified, <code>__init__</code> should
+have a second parameter with a default value. For example,</p>
+
+<p>~~~ python</p>
+
+<h1>faces -> up        left      front     right     back      down</h1>
+
+<p>cube = Cube('GWBYWRYOR YRBOOOOYO RGWWGGWBR GGOWRWYRW WROBBBBYB GYGOYBYGR')
+~~~~</p>
+
+<p>creates a "jumbled" cube. Default parameters are specified in Python using the
+assignment operator. For example,</p>
+
+<p>~~~
+def <strong>init</strong>(self, colors=' '.join([c * 9 for c in 'WGRBOY'])):
+    ...
+~~~</p>
+
+<p>where the expression (i.e., <code>' '.join([c * 9 for c in 'WGRBOY'])</code>) creates the
+string <code>WWWWWWWWW GGGGGGGGG RRRRRRRRR BBBBBBBBB OOOOOOOOO YYYYYYYYY</code>, which
+represents a Rubik's Cube that is not jumbled.</p>
+
+<p>The <code>__str__()</code> method of a class returns a string representation of the object
+-- i.e., it is similar to Java's <code>toString()</code> method. This method (i.e.,
+<code>__str__()</code>) is implicitly invoked when a string representation is desired,
+such as when printing it.</p>
+
+<h3>Work Items</h3>
+
+<p>Be sure to pass the corresponding unit test(s) after implementing each
+operation.</p>
+
+<ol>
+<li>Define all operations on the Cube class</li>
+<li>Implement <code>__init__</code> (instantiation), <code>__str__</code> (an "informal" string
+representation), and <code>get_color_at</code> operations</li>
+<li>Implement the move operation for each face[^5]</li>
+<li>Read the specification of a Rubik's Cube from a file and execute the
+specified moves</li>
+</ol>
+
+<p>[^5]: A physical Rubik's Cube is helpful when implementing each move, as it
+      allows you to verify the correctness of the implementation visually. If
+      you do not have a Rubik's Cube, an online application may be used instead
+      (e.g., https://rubiks-cube-solver.com/).</p>
+
+<h2>Testing</h2>
+
+<p>Unit tests provide statement coverage[^6] of all methods. Unit tests assume
+that a Rubik's Cube is initialized by default so that white, green, red, blue,
+orange, and yellow appear on the up, right, front, left, back, and down faces
+respectively (i.e., a cube starts in a known -- and solved -- configuration).</p>
+
+<p>[^6]: A test coverage report is provided although complete coverage is
+      difficult to ensure without tailoring the test cases to the
+      implementation. Aim for at least 80% coverage and review any lines that
+      aren't covered to see why.</p>
+
+<p>Integration tests cover reading the specification of a Rubik's Cube from a file
+and manipulating it according to a specified sequence of moves.</p>
+
+<h2>References</h2>
+
+<p>Python, "<a href="https://bit.ly/3dsBiIh">PEP 8 - Style Guide for Python Code</a>, 2001
+(last updated 1 August 2013)</p>
+
+<p>Python, "<a href="https://bit.ly/3RR9Lzl">A First Look at Classes</a>," 2022 (accessed 17
+September 2022)</p>
+
+<p>Digital Ocean, "<a href="https://do.co/3RUx4rS">Python Classes and Objects</a>," 3 August
+2022</p>
+
+<hr />
+
+<p>Footnotes</p>

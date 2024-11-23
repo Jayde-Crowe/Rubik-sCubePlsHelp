@@ -1,0 +1,4 @@
+flake8  # MIT
+pytest  # MIT
+pytest-cov  # MIT
+pytest-timeout  # MIT

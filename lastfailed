@@ -1,0 +1,21 @@
+{
+  "test_rubik.py::TestCube::test_move": true,
+  "test_rubik.py::TestCube::test__move_back_clockwise": true,
+  "test_rubik.py::TestCube::test__move_back_counterclockwise": true,
+  "test_rubik.py::TestCube::test__move_down_clockwise": true,
+  "test_rubik.py::TestCube::test__move_down_counterclockwise": true,
+  "test_rubik.py::TestCube::test__move_front_clockwise": true,
+  "test_rubik.py::TestCube::test__move_front_counterclockwise": true,
+  "test_rubik.py::TestCube::test__move_left_clockwise": true,
+  "test_rubik.py::TestCube::test__move_left_counterclockwise": true,
+  "test_rubik.py::TestCube::test__move_right_clockwise": true,
+  "test_rubik.py::TestCube::test__move_right_counterclockwise": true,
+  "test_rubik.py::TestCube::test__move_up_clockwise": true,
+  "test_rubik.py::TestCube::test__move_up_counterclockwise": true,
+  "test_rubik.py::test_main": true,
+  "test_rubik.py::test_moves[GWOGWORRY WWBYGRYGG WWBGRBOYY RWWYBOGBO BBRYOGYOG WRROYROBB-moves0]": true,
+  "test_rubik.py::test_moves[YBBGWWGRR GWWGGROOB OWWGRYYYB GOOBBYRRY WWROOYBBY RRWGYBGOO-moves1]": true,
+  "test_rubik.py::test_moves[ROOOBRRBW WYGWYRBBB YWOGOGOGR GBYOWYGOB GWBRRRWGR YYWYGBYWO-moves2]": true,
+  "test_rubik.py::test_moves[WRBYRBWWG RGBGGOYWG OBYYYRYBW RORGBRGRW YBGYWOBGO OYOOOWBWR-moves3]": true,
+  "test_rubik.py::test_moves[BYWOYYYRW OGRYGRBWO GWBBOGGBY OGOWBYROG GRYBROWGW YOBBWWRRR-moves4]": true
+}
