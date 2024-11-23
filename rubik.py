@@ -161,26 +161,26 @@ class Cube:
         right = self.affected[1]
         bottom = self.affected[2]
         left = self.affected[3]
-        temp_l = right[0][0]
-        temp_r = left[2][2]
-        right[0][0] = bottom[0][2]
-        left[2][2] = top[2][0]
-        top[2][0] = temp_l
-        bottom[0][2] = temp_r
+        temp_l = right[0]
+        temp_r = left[2]
+        right[0] = bottom[2]
+        left[2] = top[0]
+        top[0] = temp_l
+        bottom[2] = temp_r
         # Part 2
-        temp_l = right[1][0]
-        temp_r = left[1][2]
-        right[1][0] = bottom[0][1]
-        left[1][2] = top[2][1]
-        top[2][1] = temp_l
-        bottom[0][1] = temp_r
+        temp_l = right[0]
+        temp_r = left[2]
+        right[0] = bottom[1]
+        left[2] = top[1]
+        top[1] = temp_l
+        bottom[1] = temp_r
         # Part 3
-        temp_l = right[2][0]
-        temp_r = left[0][2]
-        right[2][0] = bottom[0][0]
-        left[0][2] = top[2][2]
-        bottom[0][0] = temp_r
-        top[2][2] = temp_l
+        temp_l = right[0]
+        temp_r = left[2]
+        right[0] = bottom[0]
+        left[2] = top[2]
+        bottom[0] = temp_r
+        top[2] = temp_l
 
     def counterclockwise_aftermath(self, face):
         self.clockwise_aftermath(face)
