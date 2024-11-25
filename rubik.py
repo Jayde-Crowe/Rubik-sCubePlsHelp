@@ -2,6 +2,8 @@ class Cube:
     def __init__(self, color=None, row=3, col=3):
         # Default when there are no input
         self.affected = []
+        self.rotation = True
+        self.labels = []
         if color is None:
             self.faces = {
                 'U': [['W']*row for i in range(col)],
@@ -11,16 +13,19 @@ class Cube:
                 'B': [['O']*row for i in range(col)],
                 'D': [['Y']*row for i in range(col)],
             }
-            self.print_cube()
         else:
+            print(color)
+            no_space = color.replace(" ", "")
+            print(no_space)
+            if (len(no_space) != 54):
+                raise ValueError("Cube must have 54 cubletes")
             abc = 0
             self.faces = {}
             face_labels = ['U', 'L', 'F', 'R', 'B', 'D']
             for label in face_labels:
-                self.faces[label] = [list(color[abc + a: abc + a + 3]) for a in range(0, 9, 3)]
+                self.faces[label] = [list(no_space[abc + a: abc + a + 3]) for a in range(0, 9, 3)]
                 abc = abc + 9
-            self.print_cube()
-            
+
     def get_color_at(self, face, row, col):
         row = row - 1
         col = col - 1
@@ -30,10 +35,21 @@ class Cube:
         if face not in possible:
             raise ValueError(f"{face} is not a face")
         return self.faces[face][row][col]
-         
-    def print_cube(self):
-        for key in self.faces:
-            print(key)
+
+    def set_cube(self, string):
+        data = string.split()
+        print(data)
+        if len(data) != 6:
+            raise ValueError(f"Six != {len(data)}")
+        for element in data:
+            if len(element) != 9:
+                raise ValueError(f"Nine != {len(element)}")
+        for f in range(6):
+            index = 0
+            for x in range(3):
+                for y in range(3):
+                    self.faces[list(self.list.keys())[f]][x][y] = data[f][index]
+                    index = index + 1
 
                         # make sure this last parameter is labeled something that makes sense
     def move(self, face, clockwise):
@@ -307,9 +323,56 @@ class Cube:
         self.faces['R'][0][1] = topside[1]
         self.faces['R'][0][2] = topside[2]
 
+    def print_cube_layout(self):
+        layout = ""
+        # Top face
+        layout += "       " + " ".join(self.faces['U'][0]) + "\n"
+        layout += "       " + " ".join(self.faces['U'][1]) + "\n"
+        layout += "       " + " ".join(self.faces['U'][2]) + "\n\n"
+        # Middle faces (Left, Front, Right, Back)
+        for i in range(3):
+            layout += " ".join(self.faces['L'][i]) + "  "  # Left
+            layout += " ".join(self.faces['F'][i]) + "  "  # Front
+            layout += " ".join(self.faces['R'][i]) + "  "  # Right
+            layout += " ".join(self.faces['B'][i]) + "\n"  # Back
+        layout += "\n"
+        # Bottom face
+        layout += "       " + " ".join(self.faces['D'][0]) + "\n"
+        layout += "       " + " ".join(self.faces['D'][1]) + "\n"
+        layout += "       " + " ".join(self.faces['D'][2]) + "\n"
+        print(layout)
 
 
 def main(args):
+    if (len(args) == 2):  # Checks for number of arguments
+        infile = open(args[1])
+    else:
+        raise FileExistsError("No file given")
+    contents = infile.readline()
+    da_cube = contents
+    # print(f"Faces of Cube: {da_cube}")
+    infile.readline()  # Reads past blank line
+    c = Cube()
+    c.set_cube(da_cube)
+    c.print_cube_layout()
+    moves = []
+    for line in infile:
+        moves.append(line.strip())
+        if moves[0].endswith("'"):
+            print("Counter")
+            c.rotation = False
+        else:
+            print("Clockwise")
+            c.rotation = True
+    # while moves:
+    #    if (moves[0].endswith("''")):
+    #        print("Counter")
+    #        c.rotation = False
+    #    else:
+    #        c.rotation = True
+        c.move(moves[0][0], c.rotation)
+        c.print_cube_layout()
+        moves.pop(0)
     pass
 
 
