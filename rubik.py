@@ -90,20 +90,20 @@ class Cube:
 
 
     def _move_back(self):
-        # rotate back face top row
+        initialDown = [self.faces['B'][0][0], self.faces['B'][0][1], self.faces['B'][0][2], self.faces['B'][1][2]]
         self.faces['B'][0][0] = self.faces['B'][2][0]
         self.faces['B'][0][1] = self.faces['B'][1][0]
-        self.faces['B'][0][2] = self.faces['B'][0][0]
+        self.faces['B'][0][2] = initialDown[0]
 
-        # rotate back face second row
+        # rotate front face second row
         self.faces['B'][1][0] = self.faces['B'][2][1]
         # middle cell doesn't move
-        self.faces['B'][1][2] = self.faces['B'][0][1]
+        self.faces['B'][1][2] = initialDown[1]
 
-        # rotate back face bottom row
+        # rotate front face bottom row
         self.faces['B'][2][0] = self.faces['B'][2][2]
-        self.faces['B'][2][1] = self.faces['B'][1][2]
-        self.faces['B'][2][2] = self.faces['B'][0][2]
+        self.faces['B'][2][1] = initialDown[3]
+        self.faces['B'][2][2] = initialDown[2]
 
         # save topside 
         topside = [self.faces['U'][0][0], self.faces['U'][0][1], self.faces['U'][0][2]]
@@ -129,20 +129,20 @@ class Cube:
         self.faces['L'][2][0] = topside[0]
         
     def _move_down(self):
-        # rotate down face top row
+        initialDown = [self.faces['D'][0][0], self.faces['D'][0][1], self.faces['D'][0][2], self.faces['D'][1][2]]
         self.faces['D'][0][0] = self.faces['D'][2][0]
         self.faces['D'][0][1] = self.faces['D'][1][0]
-        self.faces['D'][0][2] = self.faces['D'][0][0]
+        self.faces['D'][0][2] = initialDown[0]
 
-        # rotate down face second row
+        # rotate front face second row
         self.faces['D'][1][0] = self.faces['D'][2][1]
         # middle cell doesn't move
-        self.faces['D'][1][2] = self.faces['D'][0][1]
+        self.faces['D'][1][2] = initialDown[1]
 
-        # rotate down face bottom row
+        # rotate front face bottom row
         self.faces['D'][2][0] = self.faces['D'][2][2]
-        self.faces['D'][2][1] = self.faces['D'][1][2]
-        self.faces['D'][2][2] = self.faces['D'][0][2]
+        self.faces['D'][2][1] = initialDown[3]
+        self.faces['D'][2][2] = initialDown[2]
 
         # save backside
         backside = [self.faces['B'][2][0], self.faces['B'][2][1], self.faces['B'][2][2]]
@@ -169,19 +169,21 @@ class Cube:
         
     def _move_front(self):
          # rotate front face top row
+        
+        initialFront = [self.faces['F'][0][0], self.faces['F'][0][1], self.faces['F'][0][2], self.faces['F'][1][2]]
         self.faces['F'][0][0] = self.faces['F'][2][0]
         self.faces['F'][0][1] = self.faces['F'][1][0]
-        self.faces['F'][0][2] = self.faces['F'][0][0]
+        self.faces['F'][0][2] = initialFront[0]
 
         # rotate front face second row
         self.faces['F'][1][0] = self.faces['F'][2][1]
         # middle cell doesn't move
-        self.faces['F'][1][2] = self.faces['F'][0][1]
+        self.faces['F'][1][2] = initialFront[1]
 
         # rotate front face bottom row
         self.faces['F'][2][0] = self.faces['F'][2][2]
-        self.faces['F'][2][1] = self.faces['F'][1][2]
-        self.faces['F'][2][2] = self.faces['F'][0][2]
+        self.faces['F'][2][1] = initialFront[3]
+        self.faces['F'][2][2] = initialFront[2]
 
         # save topside 
         topside = [self.faces['U'][2][0], self.faces['U'][2][1], self.faces['U'][2][2]]
@@ -202,25 +204,25 @@ class Cube:
         self.faces['D'][0][2] = self.faces['R'][0][0]
         
         #rotate right side
-        self.faces['R'][0][0] = topside[2]
+        self.faces['R'][0][0] = topside[0]
         self.faces['R'][1][0] = topside[1]
-        self.faces['R'][2][0] = topside[0]
+        self.faces['R'][2][0] = topside[2]
         
     def _move_left(self):
-        # rotate left face top row
+        initialDown = [self.faces['L'][0][0], self.faces['L'][0][1], self.faces['L'][0][2], self.faces['L'][1][2]]
         self.faces['L'][0][0] = self.faces['L'][2][0]
         self.faces['L'][0][1] = self.faces['L'][1][0]
-        self.faces['L'][0][2] = self.faces['L'][0][0]
+        self.faces['L'][0][2] = initialDown[0]
 
-        # rotate left face second row
+        # rotate front face second row
         self.faces['L'][1][0] = self.faces['L'][2][1]
         # middle cell doesn't move
-        self.faces['L'][1][2] = self.faces['L'][0][1]
+        self.faces['L'][1][2] = initialDown[1]
 
-        # rotate left face bottom row
+        # rotate front face bottom row
         self.faces['L'][2][0] = self.faces['L'][2][2]
-        self.faces['L'][2][1] = self.faces['L'][1][2]
-        self.faces['L'][2][2] = self.faces['L'][0][2]
+        self.faces['L'][2][1] = initialDown[3]
+        self.faces['L'][2][2] = initialDown[2]
 
         # save topside 
         topside = [self.faces['U'][0][0], self.faces['U'][1][0], self.faces['U'][2][0]]
@@ -245,21 +247,22 @@ class Cube:
         self.faces['F'][1][0] = topside[1]
         self.faces['F'][2][0] = topside[2]
         
+
     def _move_right(self):
-         # rotate right face top row
+        initialDown = [self.faces['R'][0][0], self.faces['R'][0][1], self.faces['R'][0][2], self.faces['R'][1][2]]
         self.faces['R'][0][0] = self.faces['R'][2][0]
         self.faces['R'][0][1] = self.faces['R'][1][0]
-        self.faces['R'][0][2] = self.faces['R'][0][0]
+        self.faces['R'][0][2] = initialDown[0]
 
-        # rotate right face second row
+        # rotate front face second row
         self.faces['R'][1][0] = self.faces['R'][2][1]
         # middle cell doesn't move
-        self.faces['R'][1][2] = self.faces['R'][0][1]
+        self.faces['R'][1][2] = initialDown[1]
 
-        # rotate right face bottom row
+        # rotate front face bottom row
         self.faces['R'][2][0] = self.faces['R'][2][2]
-        self.faces['R'][2][1] = self.faces['R'][1][2]
-        self.faces['R'][2][2] = self.faces['R'][0][2]
+        self.faces['R'][2][1] = initialDown[3]
+        self.faces['R'][2][2] = initialDown[2]
 
         # save topside 
         topside = [self.faces['U'][2][2], self.faces['U'][1][2], self.faces['U'][0][2]]
@@ -284,21 +287,22 @@ class Cube:
         self.faces['B'][1][0] = topside[1]
         self.faces['B'][2][0] = topside[2]
     
+
     def _move_up(self):
-         # rotate up face top row
+        initialDown = [self.faces['U'][0][0], self.faces['U'][0][1], self.faces['U'][0][2], self.faces['U'][1][2]]
         self.faces['U'][0][0] = self.faces['U'][2][0]
         self.faces['U'][0][1] = self.faces['U'][1][0]
-        self.faces['U'][0][2] = self.faces['U'][0][0]
+        self.faces['U'][0][2] = initialDown[0]
 
-        # rotate up face second row
+        # rotate front face second row
         self.faces['U'][1][0] = self.faces['U'][2][1]
         # middle cell doesn't move
-        self.faces['U'][1][2] = self.faces['U'][0][1]
+        self.faces['U'][1][2] = initialDown[1]
 
-        # rotate up face bottom row
+        # rotate front face bottom row
         self.faces['U'][2][0] = self.faces['U'][2][2]
-        self.faces['U'][2][1] = self.faces['U'][1][2]
-        self.faces['U'][2][2] = self.faces['U'][0][2]
+        self.faces['U'][2][1] = initialDown[3]
+        self.faces['U'][2][2] = initialDown[2]
 
         # save backside
         topside = [self.faces['B'][0][0], self.faces['B'][0][1], self.faces['B'][0][2]]
