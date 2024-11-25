@@ -11,7 +11,6 @@ class Cube:
                 'B': [['O']*row for i in range(col)],
                 'D': [['Y']*row for i in range(col)],
             }
-            self.print_cube()
         else:
             abc = 0
             self.faces = {}
@@ -19,7 +18,6 @@ class Cube:
             for label in face_labels:
                 self.faces[label] = [list(color[abc + a: abc + a + 3]) for a in range(0, 9, 3)]
                 abc = abc + 9
-            self.print_cube()
             
     def get_color_at(self, face, row, col):
         row = row - 1
@@ -30,10 +28,6 @@ class Cube:
         if face not in possible:
             raise ValueError(f"{face} is not a face")
         return self.faces[face][row][col]
-         
-    def print_cube(self):
-        for key in self.faces:
-            print(key)
 
                         # make sure this last parameter is labeled something that makes sense
     def move(self, face, clockwise):
